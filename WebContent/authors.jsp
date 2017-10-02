@@ -11,13 +11,15 @@
 <body>
 <s:iterator value="authorList" >
 <div id="<s:property value="id" />">
- n<s:property value="name"/>
+ name:<s:property value="name"/>
  <br/>
- a<s:property value="age"/>
+ age:<s:property value="age"/>
  <br/>
- c<s:property value="country"/>
-
+ country:<s:property value="country"/>
+<br/>
+<a href="UpdAuthor.jsp?id=<s:property value="id" />&name=<s:property value="name"/>&age=<s:property value="age"/>&country=<s:property value="country"/>">更新</a>
 </div>
+<hr/>
 </s:iterator>
 
 </body>

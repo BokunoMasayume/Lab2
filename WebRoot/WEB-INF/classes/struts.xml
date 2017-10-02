@@ -36,12 +36,24 @@
         </action>
         
         <action name="updataBo" class="com.testbushu.actions.UpdataBook">
-            <result type="redirect">/showBo</result>
+            <result name="success" type="redirect">/showBo</result>
+            <result name="noThisAuthor">/addAuthor.jsp</result>
+            <result name="error">/error.jsp</result>
         </action>
         
         <action name="deleteBo" class="com.testbushu.actions.DeleteBook">
             <result type="redirect">/showBo</result>
         </action>
+        
+       <action name="updataAu" class="com.testbushu.actions.UpdataAuthor">
+       		<result name="success" type="redirect">/showAu</result>
+       		<result name="error">/error.jsp</result>
+       	</action>
+       	
+       	<action name="authorHome" class="com.testbushu.actions.authorAllBooks">
+       		<result name="success">/authorHome.jsp</result>
+       		<result name="error">/error.jsp</result>
+       	</action>
         
         <action name="test" class="com.testbushu.actions.ttest">
             <result type="redirect">/showBo</result>

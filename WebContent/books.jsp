@@ -86,12 +86,12 @@ a:hover{
     Price: <s:property value="price"/>
     authorID: <s:property value="authorID"/>
     publisher:  <s:property value="publisher"/>
-    publishdate:  <s:property value="publishdate"/>
+    publishdate:  <s:property value="publishDate"/>
     <br/>
     作者信息：<br/>
     name: <s:property value="author.name"/>
     <br/>
-    <a href="UpdBook.jsp?isbn=<s:property value="isbn"/>" >更新</a>
+    <a href="UpdBook.jsp?isbn=<s:property value="isbn"/>&name=<s:property value="author.name"/>&title=<s:property value="title"/>&price=<s:property value="price"/>&publisher=<s:property value="publisher"/>&publishdate=<s:property value="publishDate"/>" >更新</a>
     <br/>
     <a href="deleteBo.action?isbn=<s:property value="isbn"/>" >删除</a>
    

@@ -128,7 +128,7 @@ a:hover{
     <s:if test="hasAuthor">
         <s:iterator value="aaaList">
             <form action="authorHome" method="post">
-            <input type=hidden name="id" value="<s:property value="id"/>"/>
+            <input type=hidden name="au.id" value="<s:property value="id"/>"/>
             <input type=submit value="<s:property value="name"/>"/>
             </form>
         </s:iterator>
