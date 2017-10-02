@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+ 
+<struts>
+    <constant name="struts.action.excludePattern" value="/static/.*?" />
+    <include file="struts-default.xml"/>
+    <package name="libmanage" extends="struts-default"  namespace="/">
+        <action name="addAuthor" class="com.testbushu.actions.AddAuthor">
+            <result name="success">/success.jsp</result>
+            <result name="none">/none.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+        <action name="showAu" class="com.testbushu.actions.ShowAuthor">
+            <result name="success">/authors.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+        <action name="addBook" class="com.testbushu.actions.AddBook">
+            <result name="success">/success.jsp</result>
+            <result name="none">/none.jsp</result>
+            <result name="error">/error.jsp</result>
+            <result name="noThisAuthor">/addAuthor.jsp</result>
+        </action>
+        
+        <action name="showBo" class="com.testbushu.actions.ShowBook">
+            <result name="success">/books.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+        <action name="searchAuthorByName" class="com.testbushu.actions.SABN">
+            <result name="success">/search.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+        <action name="updataBo" class="com.testbushu.actions.UpdataBook">
+            <result type="redirect">/showBo</result>
+        </action>
+        
+        <action name="deleteBo" class="com.testbushu.actions.DeleteBook">
+            <result type="redirect">/showBo</result>
+        </action>
+        
+        <action name="test" class="com.testbushu.actions.ttest">
+            <result type="redirect">/showBo</result>
+        </action>
+       
+    </package>
+</struts>
