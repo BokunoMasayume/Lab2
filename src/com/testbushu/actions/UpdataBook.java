@@ -26,7 +26,7 @@ public class UpdataBook {
     		//System.out.println(this.getBookMsg().getTitle());
     	Class.forName("com.mysql.jdbc.Driver");
     	String url = "jdbc:mysql://localhost:3306/lab_2_lib?useUnicode=true&characterEncoding=utf-8&useSSL=false";
-    	Connection conn = DriverManager.getConnection(url,"mushroom","adminmushroom");
+    	Connection conn = DriverManager.getConnection(url,"root","adminmushroom");
     	Statement stmt = conn.createStatement();
     	String sql = "select AuthorID from Author where Name=\""+this.getName()+"\"";
     	ResultSet rs = stmt.executeQuery(sql);

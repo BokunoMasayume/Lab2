@@ -119,7 +119,7 @@ a:hover{
 		
 		<form action="searchAuthorByName" method="post">
 			<input id="searchText" type="text" name="seaStr" value="输入作家"/>
-			<input id="searchSubmit" type="image" src="static/sea.png" alt="搜&nbsp索" width="50" height="50"/>
+			<input id="searchSubmit" type="image" src="static/sea.png" alt="搜&nbsp;索" width="50" height="50"/>
 		</form>
 	</div>
     

@@ -11,7 +11,7 @@
 <body>
 <s:iterator value="authorList" >
 <div id="<s:property value="id" />">
- name:<s:property value="name"/>
+ <a href="authorHome?au.id=<s:property value="id" />">name:<s:property value="name"/></a>
  <br/>
  age:<s:property value="age"/>
  <br/>

@@ -29,7 +29,7 @@ public class authorAllBooks {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://localhost:3306/lab_2_lib?useUnicode=true&characterEncoding=utf-8&useSSL=false";
-			Connection conn = DriverManager.getConnection(url,"mushroom","adminmushroom");
+			Connection conn = DriverManager.getConnection(url,"root","adminmushroom");
 			Statement stmt = conn.createStatement();
 			Statement stmt0 = conn.createStatement();
 			String sqla  = "select * from Author where AuthorID="+this.getAu().getId();

@@ -64,7 +64,7 @@ a:hover{
 		<a href="showBo.action">图<br/>书</a>
 	</div>
 	<div id = "authors">
-		<a href="showAu.action">+作<br/>家</a>
+		<a href="showAu.action">作<br/>家</a>
 	</div>
 </body>
 </html>
