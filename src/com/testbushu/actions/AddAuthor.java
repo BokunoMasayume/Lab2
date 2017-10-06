@@ -6,7 +6,11 @@ public class AddAuthor implements Action {
 	private String name;
 	private String country;
 	private byte age;
+	private int id;
 	
+	public void setId(int i){
+		this.id = i;
+	}
 	public void setName(String n){
 		this.name=n;
 	}
@@ -15,6 +19,10 @@ public class AddAuthor implements Action {
 	}
 	public void setAge(byte a){
 		this.age = a;
+	}
+	
+	public int getId(){
+		return this.id;
 	}
 	public String getName(){
 		return this.name;
@@ -31,11 +39,12 @@ public class AddAuthor implements Action {
 		Class.forName("com.mysql.jdbc.Driver");
 		String url = "jdbc:mysql://localhost:3306/lab_2_lib?useUnicode=true&characterEncoding=utf-8&useSSL=false";
 		Connection conn = DriverManager.getConnection(url,"root","adminmushroom");
-		String sql = "insert into Author(Name,Age,Country) values(?,?,?)";
+		String sql = "insert into Author(Name,Age,Country,AuthorID) values(?,?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, this.getName());
 		ps.setByte(2,this.getAge());
 		ps.setString(3,this.getCountry());
+		ps.setInt(4, this.getId());
 		int row = ps.executeUpdate();
 		ps.close();
 		conn.close();

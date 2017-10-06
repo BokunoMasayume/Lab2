@@ -29,17 +29,18 @@
 	var priceWarn = document.getElementById('price-warn');
 
 	//正则
-	var isbnReg=/^((\d{5})-(\d)-(\d{3})-(\d))$/;
+	var isbnReg=/^(978-(\d{1,5})-(\d{2,5})-(\d{1,6})-\d)$/;
 	var priceReg=/^(\d+)(\.\d+)?$/;
 	var yearReg=/^\d{4}$/;
 	var monthReg=/^(0?[1-9]|1[0-2])$/;
 	var dayReg=/^((0?[1-9])|((1|2)[0-9])|30|31)$/;
+	var nameReg=/^\d+$/;
 
 	var msg={
 		success:{
 			'isbn' : 'ISBN格式正确',
 			'title' : '标题可用',
-			'name' : '作者姓名可用',
+			'name' : '作者ID可用',
 			'publisher' : '出版商可用',
 			'date' : '日期格式正确',
 			'price' : '价格格式正确'
@@ -47,7 +48,7 @@
 		error:{
 			'isbn' : 'ISBN格式不正确',
 			'title':'标题不可为空',
-			'name':'作者姓名不可为空',
+			'name':'作者ID格式不正确',
 			'publisher':'出版社不可为空',
 			'date' : '日期格式不正确',
 			'price' : '价格格式不正确'
@@ -120,6 +121,15 @@
 				return 'success';
 			}
 		}
+		var checkID = function(i){
+			if(i.length===0 || !nameReg.test(i)){
+				return 'error';
+				
+			}
+			else{
+				return 'success';
+			}
+		}
 
 		return {
 			'checknotnull':checkNotNull,
@@ -127,7 +137,8 @@
 			'checkprice':checkPrice,
 			'checkyear':checkYear,
 			'checkmonth':checkMonth,
-			'checkday':checkDay
+			'checkday':checkDay,
+			'checkid':checkID
 		}
 
 	})();
@@ -174,7 +185,7 @@
 		repeatWarn(title,titleWarn,checkResult,'title');
 	});
 	bindEvent(name,'blur',function(){
-		var checkResult = check['checknotnull'](name.value);
+		var checkResult = check['checkid'](name.value);
 		repeatWarn(name,nameWarn,checkResult,'name');
 	});
 	bindEvent(publisher,'blur',function(){
@@ -190,11 +201,11 @@
 		repeatWarn(pyear,dateWarn,checkResult,'date');
 	});
 	bindEvent(pmonth,'blur',function(){
-		var checkResult = check['checkyear'](pmonth.value);
+		var checkResult = check['checkmonth'](pmonth.value);
 		repeatWarn(pmonth,dateWarn,checkResult,'date');
 	});
 	bindEvent(pday,'blur',function(){
-		var checkResult = check['checkyear'](pday.value);
+		var checkResult = check['checkday'](pday.value);
 		repeatWarn(pday,dateWarn,checkResult,'date');
 	});
 
@@ -216,12 +227,12 @@ function formCheck(){
 
 
 	//正则
-	var isbnReg=/^((\d{5})-(\d)-(\d{3})-(\d))$/;
+	var isbnReg=/^(978-(\d{1,5})-(\d{2,5})-(\d{1,6})-\d)$/;
 	var priceReg=/^(\d+)(\.\d+)?$/;
 	var yearReg=/^\d{4}$/;
 	var monthReg=/^(0?[1-9]|1[0-2])$/;
 	var dayReg=/^((0?[1-9])|((1|2)[0-9])|30|31)$/;
-
+	var nameReg=/^\d+$/;
 
     var check = (function(){
 		var checkNotNull = function(value){
@@ -276,19 +287,30 @@ function formCheck(){
 			}
 		}
 
+		var checkID = function(i){
+			if(i.length===0 || !nameReg.test(i)){
+				return 'error';
+				
+			}
+			else{
+				return 'success';
+			}
+		}
+
 		return {
 			'checknotnull':checkNotNull,
 			'checkisbn':checkISBN,
 			'checkprice':checkPrice,
 			'checkyear':checkYear,
 			'checkmonth':checkMonth,
-			'checkday':checkDay
+			'checkday':checkDay,
+			'checkid':checkID
 		}
 
 	})();
 
 
-	if(check['checkisbn'](isbn.value)==='success' && check['checknotnull'](title.value)==='success' && check['checknotnull'](name.value)==='success' && check['checknotnull'](publisher.value)==='success' && check['checkprice'](price.value)==='success' && check['checkyear'](pyear.value)==='success' &&check['checkmonth'](pmonth.value)==='success' && check['checkday'](pday.value)=='success'){
+	if(check['checkisbn'](isbn.value)==='success' && check['checknotnull'](title.value)==='success' && check['checkid'](name.value)==='success' && check['checknotnull'](publisher.value)==='success' && check['checkprice'](price.value)==='success' && check['checkyear'](pyear.value)==='success' &&check['checkmonth'](pmonth.value)==='success' && check['checkday'](pday.value)=='success'){
 // alert('ok');
 		return true;
 	}

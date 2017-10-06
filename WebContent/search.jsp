@@ -8,47 +8,45 @@
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
  <title>查询作家</title>
  <style type="text/css">
+
  body{
- 	background-color:black;
- }
-a:link,a:visited,a:active{
-	text-decoration: none;
-	color:white;
-
+  background:#000;
+  color:#fff;
+  /*font-family: 'PT Sans Narrow', Arial, sans-serif;*/
 }
-a:hover{
-	text-decoration: none;
-	color:white;
-	box-shadow: 0 0 5px #D8E3F5;
+a{
+  color:#fff;
+  text-decoration:none;
 }
-
-.navigationBar{
-    width:10%;
-    height:94%;
-    margin:3% 0;
-    margin-left: 3%;
-    padding: 3% 0;
-    font-size: 40px;
-    /*border-right:  2px solid white;*/
-    float:left;
+ .mb_menu{
+  position:absolute;
+  top:100px;
+  left:0px;
+  z-index:11;
 }
-
-#query ,#book,#author{
-	text-align: center;
-	border-radius: 5%;
+.mb_menu a{
+  background-color:#000;
+  margin-bottom:2px;
+  opacity:0.9;
+  display:block;
+  width:98px;
+  height:98px;
+  color:#fff;
+  line-height:98px;
+  text-align:center;
+  text-transform:uppercase;
+  outline:none;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition:all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -transition: all 0.2s ease-in;
 }
-#query{
-	/*background-color: #D4CBCB;*/
-	/*border-radius: 2%;*/
-	color:white;
-	box-shadow: 0 0 5px #D8E3F5;
-}
-#book{
-	/*border-top: 2px solid #D4CBCB;*/
-	/*border-bottom:  2px solid #D4CBCB;*/
+.mb_menu a:hover{
+  color:#000;
+  background-color:#fff;
 }
 #bigSearch{
-	/*background-color: #D8E3F5;*/
+	background-color: red;
 	background-color: black;
 	float:left;
 	margin:3% 0;
@@ -63,7 +61,7 @@ a:hover{
 	/*border :3px solid black;*/
 	position:absolute;
 	top:100px;
-	left:25%;
+	left:40%;
 	width: 50%;
 	padding-left:1%;
 	padding-top: 10px;
@@ -97,20 +95,13 @@ a:hover{
 </style>
 </head>
 <body>
-	<div class = "navigationBar">
-		<div id = "query">
-			<a href="search.html">&nbsp;&nbsp;查&nbsp;询&nbsp;&nbsp;</a>
-		</div>
-
-		
-		<div id = "book">
-			<a href="books.jsp">&nbsp;&nbsp;图&nbsp;书&nbsp;&nbsp;</a>
-		</div>
-
-		<div id = "author">
-			<a href="#">&nbsp;&nbsp;作&nbsp;家&nbsp;&nbsp;</a>
-		</div>
-	</div>
+	<div id="mb_menu" class="mb_menu">
+      <a href="search.jsp" data-speed="1000" data-easing="easeOutBack">搜&nbsp;&nbsp;索</a>
+      <a href="showBo.action" data-speed="1000" data-easing="easeInExpo">图&nbsp;&nbsp;书</a>
+      <a href="showAu.action" data-speed="1000" data-easing="easeOutBack">作&nbsp;&nbsp;家</a>
+      <a href="addAuthor.jsp" data-speed="1000" data-easing="easeInExpo">添加作家</a>
+      <a href="addBook.jsp" data-speed="1000" data-easing="easeOutBack">添加图书</a>
+    </div>
 
 
     <div id = "bigSearch">

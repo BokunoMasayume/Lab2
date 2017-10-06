@@ -70,7 +70,7 @@ public class AddBook implements Action{
     		String url = "jdbc:mysql://localhost:3306/lab_2_lib?useUnicode=true&characterEncoding=utf-8&useSSL=false";
     		Connection conn = DriverManager.getConnection(url,"root","adminmushroom");
     		Statement stmt = conn.createStatement();
-    		String sql = "select * from Author where Name = \"" +this.getAuthorName()+"\"";
+    		String sql = "select * from Author where AuthorID = " +this.getAuthorName();
     		ResultSet rs = stmt.executeQuery(sql);
     		if(rs.next()){
     			int id = rs.getInt("AuthorID");

@@ -8,96 +8,135 @@
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
  <title>图 书</title>
  <style type="text/css">
- body{
- 	background-color: black;
- }
-a:link,a:visited,a:active{
-	text-decoration: none;
-	color:white;
-
+  body{
+  background:#fff;
+  color:#000;
+  /*font-family: 'PT Sans Narrow', Arial, sans-serif;*/
 }
-a:hover{
-	text-decoration: none;
-	color:white;
-	box-shadow: 0 0 5px #D8E3F5;
-}
-
-.navigationBar{
-    width:10%;
-    height:94%;
-    margin:3% 0;
-    margin-left: 3%;
-    padding: 3% 0;
-    font-size: 40px;
-    /*border-right:  2px solid white;*/
+  .book{
+    border: 1px solid #ccc;
+    border-radius: 5px;
     float:left;
-}
+    margin:4%;
+    padding:0;
+    position:relative;
+  }
+  a{
 
-#query ,#book,#author{
-	text-align: center;
-	border-radius: 5%;
+  text-decoration:none;
 }
-#book{
-	/*background-color: #D4CBCB;*/
-	/*border-radius: 2%;*/
-	color:white;
-	box-shadow: 0 0 5px #D8E3F5;
+ .mb_menu{
+  position:fixed;
+  top:100px;
+  left:0px;
+  z-index:11;
 }
-
-#bigList{
-	/*background-color: #D8E3F5;*/
-	background-color: black;
-	float:left;
-	margin:3% 0;
-	margin-right: 3%;
-	width:83%;
-	height:98%;
-	border-radius: 2%;
-	position:relative;
-	box-shadow: 0 0 5px #D8E3F5;
-	color:white;
+.mb_menu a{
+  background-color:#000;
+  margin-bottom:2px;
+  opacity:0.9;
+  display:block;
+  width:98px;
+  height:98px;
+  color:#fff;
+  line-height:98px;
+  text-align:center;
+  text-transform:uppercase;
+  outline:none;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition:all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -transition: all 0.2s ease-in;
 }
-
-
+ .mb_menu a:hover{
+  color:#000;
+  background-color:#fff;
+}
+  .focus-show{
+    position:absolute;
+    width:100%;
+    bottom: 0;
+    padding-bottom:5%;
+    display: none;
+  }
+  .up{
+    padding:5% 10%;
+  }
+  .down{
+    /*background-color:black;*/
+    padding:5% 10%;
+  }
+  .mouseon{
+    background-color:black;
+  }
+  .box{
+  z-index:999;
+    display: none;
+    background-color:rgba(95,95,95,0.8);
+    position:fixed;
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+  }
+  .details{
+    z-index:999;
+    display: none;
+    background-color: white;
+    position:fixed;
+    left:20%;
+    top:10%;
+    width:60%;
+    height: auto;
+    border:2px solid black;
+  }
 </style>
 </head>
 <body>
-	<div class = "navigationBar">
-		<div id = "query">
-			<a href="search.html">&nbsp;&nbsp;查&nbsp;询&nbsp;&nbsp;</a>
-		</div>
-
-		
-		<div id = "book">
-			<a href="books.jsp">&nbsp;&nbsp;图&nbsp;书&nbsp;&nbsp;</a>
-		</div>
-
-		<div id = "author">
-			<a href="showAu.action">&nbsp;&nbsp;s作&nbsp;家&nbsp;&nbsp;</a>
-		</div>
-	</div>
-
-
-    <div id = "bigList">
-    <s:iterator value="bookList">
-       <div id="<s:property value="isbn"/>">
-    isbn: <s:property value="isbn"/>
-    Title: <s:property value="title"/>
-    Price: <s:property value="price"/>
-    authorID: <s:property value="authorID"/>
-    publisher:  <s:property value="publisher"/>
-    publishdate:  <s:property value="publishDate"/>
-    <br/>
-    作者信息：<br/>
-    name: <s:property value="author.name"/>
-    <br/>
-    <a href="UpdBook.jsp?isbn=<s:property value="isbn"/>&name=<s:property value="author.name"/>&title=<s:property value="title"/>&price=<s:property value="price"/>&publisher=<s:property value="publisher"/>&publishdate=<s:property value="publishDate"/>" >更新</a>
-    <br/>
-    <a href="deleteBo.action?isbn=<s:property value="isbn"/>" >删除</a>
-   
-       </div>
-       <hr/>
-    </s:iterator>
+    <script src="static/js/jquery-1.3.1.js"></script>
+  <script src="static/js/book.js"></script>
+	<div id="mb_menu" class="mb_menu">
+      <a href="search.jsp" data-speed="1000" data-easing="easeOutBack">搜&nbsp;&nbsp;索</a>
+      <a href="showBo.action" data-speed="1000" data-easing="easeInExpo">图&nbsp;&nbsp;书</a>
+      <a href="showAu.action" data-speed="1000" data-easing="easeOutBack">作&nbsp;&nbsp;家</a>
+      <a href="addAuthor.jsp" data-speed="1000" data-easing="easeInExpo">添加作家</a>
+      <a href="addBook.jsp" data-speed="1000" data-easing="easeOutBack">添加图书</a>
     </div>
+    <s:iterator value="bookList">
+       <div class="book" id="<s:property value="isbn"/>">
+    <!-- isbn: <s:property value="isbn"/> -->
+            <div class="up">
+                书&nbsp;&nbsp;名:&nbsp; <s:property value="title"/>
+
+                
+            </div>
+            <div class="box"></div>
+            <div class="details">
+                        ISBN:&nbsp;<s:property value="isbn"/><br/>
+                        书&nbsp;&nbsp;名:&nbsp; <s:property value="title"/><br/>
+                        出版社:&nbsp; <s:property value="publisher"/><br/>
+                        出版日期:&nbsp; <s:property value="publishDate"/><br/>
+                        价&nbsp;&nbsp;格:&nbsp;<s:property value="price"/>
+                        <hr/>
+                        <h3>作者信息</h3>
+                        姓&nbsp;&nbsp;名:&nbsp;<s:property value="author.name"/><br/>
+                        年&nbsp;&nbsp;龄:&nbsp;<s:property value="author.age"/><br/>
+                        国&nbsp;&nbsp;籍:&nbsp;<s:property value="author.country"/><br/>
+       I&nbsp;&nbsp;D:&nbsp;<s:property value="author.id"/>
+                    </div>
+            <div class="down">
+              
+                出版社:&nbsp; <s:property value="publisher"/><br/>
+                价&nbsp;&nbsp;格:&nbsp;<s:property value="price"/>
+            </div>
+            <div class="focus-show"><br/><br/>
+                &nbsp;&nbsp;&nbsp;<a href="UpdBook.jsp?isbn=<s:property value="isbn"/>&name=<s:property value="author.id"/>&title=<s:property value="title"/>&price=<s:property value="price"/>&publisher=<s:property value="publisher"/>&publishdate=<s:property value="publishDate"/>" >更新</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                 <a href="deleteBo.action?isbn=<s:property value="isbn"/>" >删除</a>
+             </div>
+         </div>
+   
+       
+    </s:iterator>
+   
 </body>
 </html>

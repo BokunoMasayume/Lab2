@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>添加图书</title>
 <style type="text/css">
 	* {
     margin: 0;
@@ -56,9 +56,47 @@
 #pyear,#pday,#pmonth{
 	width: 60px ;
 }
+    a{
+  color:#fff;
+  text-decoration:none;
+}
+ .mb_menu{
+  position:fixed;
+  top:100px;
+  left:0px;
+  z-index:11;
+}
+.mb_menu a{
+  background-color:#000;
+  margin-bottom:2px;
+  opacity:0.9;
+  display:block;
+  width:98px;
+  height:98px;
+  color:#fff;
+  line-height:98px;
+  text-align:center;
+  text-transform:uppercase;
+  outline:none;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition:all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -transition: all 0.2s ease-in;
+}
+.mb_menu a:hover{
+  color:#000;
+  background-color:#fff;
+}
 </style>
 </head>
 <body>
+<div id="mb_menu" class="mb_menu">
+      <a href="search.jsp" data-speed="1000" data-easing="easeOutBack">搜&nbsp;&nbsp;索</a>
+      <a href="showBo.action" data-speed="1000" data-easing="easeInExpo">图&nbsp;&nbsp;书</a>
+      <a href="showAu.action" data-speed="1000" data-easing="easeOutBack">作&nbsp;&nbsp;家</a>
+      <a href="addAuthor.jsp" data-speed="1000" data-easing="easeInExpo">添加作家</a>
+      <a href="addBook.jsp" data-speed="1000" data-easing="easeOutBack">添加图书</a>
+    </div>
 <form action="addBook" method="post" onsubmit="return formCheck()">
 	<div class="input-group">
 		<label for="isbn">ISBN: </label>
@@ -71,7 +109,7 @@
 		<span id="title-warn"></span>
 	</div>
 	<div class="input-group">
-		<label for="name">作者: </label>
+		<label for="name">作者ID: </label>
 		<input class="input" id="name" name="authorName" type="text"/>
 		<span id="name-warn"></span>
 	</div>

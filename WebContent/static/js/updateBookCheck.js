@@ -27,16 +27,16 @@
 	var priceWarn = document.getElementById('price-warn');
 
 	//正则
-	var isbnReg=/^((\d{5})-(\d)-(\d{3})-(\d))$/;
+	var isbnReg=/^(978-(\d{1,5})-(\d{2,5})-(\d{1,6})-\d)$/;
 	var priceReg=/^(\d+)(\.\d+)?$/;
 	var dateReg=/^(\d{4})-(0?[1-9]|1[0-2])-((0?[1-9])|((1|2)[0-9])|30|31)$/;
-	
+	var nameReg=/^\d+$/; //实际是authorID
 
 	var msg={
 		success:{
 			'isbn' : 'ISBN格式正确',
 			'title' : '标题可用',
-			'name' : '作者姓名可用',
+			'name' : '作者ID可用',
 			'publisher' : '出版商可用',
 			'date' : '日期格式正确',
 			'price' : '价格格式正确'
@@ -44,7 +44,7 @@
 		error:{
 			'isbn' : 'ISBN格式不正确',
 			'title':'标题不可为空',
-			'name':'作者姓名不可为空',
+			'name':'作者ID格式错误',
 			'publisher':'出版社不可为空',
 			'date' : '日期格式不正确,需为yyyy-mm-dd',
 			'price' : '价格格式不正确'
@@ -94,11 +94,20 @@
 			}
 		}
 		
-
+		var checkID = function(i){
+			if(i.length===0 || !nameReg.test(i)){
+				return 'error';
+				
+			}
+			else{
+				return 'success';
+			}
+		}
 		return {
 			'checknotnull':checkNotNull,
 			'checkprice':checkPrice,
-			'checkdate':checkDate
+			'checkdate':checkDate,
+			'checkid':checkID
 		}
 
 	})();
@@ -135,7 +144,7 @@
 		repeatWarn(title,titleWarn,checkResult,'title');
 	});
 	bindEvent(name,'blur',function(){
-		var checkResult = check['checknotnull'](name.value);
+		var checkResult = check['checkid'](name.value);
 		repeatWarn(name,nameWarn,checkResult,'name');
 	});
 	bindEvent(publisher,'blur',function(){
@@ -168,10 +177,10 @@ function formCheck(){
 
 
 	//正则
-	var isbnReg=/^((\d{5})-(\d)-(\d{3})-(\d))$/;
+	var isbnReg=/^(978-(\d{1,5})-(\d{2,5})-(\d{1,6})-\d)$/;
 	var priceReg=/^(\d+)(\.\d+)?$/;
 	var dateReg=/^(\d{4})-(0?[1-9]|1[0-2])-((0?[1-9])|((1|2)[0-9])|30|31)$/;
-
+	var nameReg=/^\d+$/; //实际是authorID
 
     var check = (function(){
 		var checkNotNull = function(value){
@@ -201,18 +210,26 @@ function formCheck(){
 				return 'success';
 			}
 		}
-		
-
+		var checkID = function(i){
+			if(i.length===0 || !nameReg.test(i)){
+				return 'error';
+				
+			}
+			else{
+				return 'success';
+			}
+		}
 		return {
 			'checknotnull':checkNotNull,
 			'checkprice':checkPrice,
-			'checkdate':checkDate
+			'checkdate':checkDate,
+			'checkid':checkID
 		}
 
 	})();
 
 
-	if( check['checknotnull'](title.value)==='success' && check['checknotnull'](name.value)==='success' && check['checknotnull'](publisher.value)==='success' && check['checkprice'](price.value)==='success' && check['checkdate'](pdate.value)==='success'){
+	if( check['checknotnull'](title.value)==='success' && check['checkid'](name.value)==='success' && check['checknotnull'](publisher.value)==='success' && check['checkprice'](price.value)==='success' && check['checkdate'](pdate.value)==='success'){
 // alert('ok');
 		return true;
 	}

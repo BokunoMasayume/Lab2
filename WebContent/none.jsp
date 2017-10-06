@@ -4,9 +4,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>操作流产</title>
 </head>
 <body>
-NONE
+NONE<br/>
+<script type="text/javascript"> 
+var t=4;//设定跳转的时间 
+setInterval("refer()",1000); //启动1秒定时 
+function refer(){  
+    if(t==0){ 
+        location="http://47.104.1.55:8888/test-bushu/";  
+    } 
+    document.getElementById('show').innerHTML=""+t+"秒后跳转到主页";  
+    t--;  
+   
+} 
+</script> 
+<span id="show"></span>
 </body>
 </html>

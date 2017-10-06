@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>更新图书</title>
 <style type="text/css">
 	* {
     margin: 0;
@@ -75,7 +75,7 @@ ISBN：<%=isbn %>
 		<span id="title-warn"></span>
 	</div>
 	<div class="input-group">
-		<label for="name">作者： </label>
+		<label for="name">作者ID： </label>
 		<input  class="input" type="text" id="name" name="name" value="<%=name %>" />
 		<span id="name-warn"></span>
 	</div>

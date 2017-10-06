@@ -4,7 +4,7 @@ import java.sql.*;
 import com.testbushu.beans.BookBean;
 
 public class UpdataBook {
-    private String name;//Author's name
+    private String name;//Author's name change to id
     private BookBean bookMsg;
     
     public void setName(String n){
@@ -28,7 +28,7 @@ public class UpdataBook {
     	String url = "jdbc:mysql://localhost:3306/lab_2_lib?useUnicode=true&characterEncoding=utf-8&useSSL=false";
     	Connection conn = DriverManager.getConnection(url,"root","adminmushroom");
     	Statement stmt = conn.createStatement();
-    	String sql = "select AuthorID from Author where Name=\""+this.getName()+"\"";
+    	String sql = "select AuthorID from Author where AuthorID="+this.getName();
     	ResultSet rs = stmt.executeQuery(sql);
     	if(rs.next()){// have this author in lib 
     		int id = rs.getInt("AuthorID");
