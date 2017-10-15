@@ -91,7 +91,7 @@ public class AddBook implements Action{
     			if(row>0)return SUCCESS;
     			else return NONE;
     		}
-    		else{
+    		else{//先增添作者
     			rs.close();
         		stmt.close();
         		conn.close();
